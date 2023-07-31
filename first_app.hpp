@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game_window.hpp"
+#include "game_pipeline.hpp"
 
 namespace game {
     class FirstApp {
@@ -13,5 +14,6 @@ namespace game {
 
         private:
             GameWindow gameWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
+            GamePipeline gamePipeline{"shaders/simple_shader.vert.spv", "shaders/simple_shader.frag.spv"};
     };
 }
