@@ -6,6 +6,7 @@
 namespace game {
 
     FirstApp::FirstApp() {
+        loadModels();
         createPipelineLayout();
         createPipeline();
         createCommandBuffers();
@@ -22,6 +23,16 @@ namespace game {
         }
 
         vkDeviceWaitIdle(gameDevice.device());
+    }
+
+    void FirstApp::loadModels() {
+        std::vector<GameModel::Vertex> vertiices {
+            {{0, -0.5f}},
+            {{0.5f, 0.5f}},
+            {{-0.5f, 0.5f}}
+        };
+
+        gameModel = std::make_unique<GameModel>(gameDevice, vertiices);
     }
 
     void FirstApp::createPipelineLayout() {
@@ -86,7 +97,8 @@ namespace game {
             vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
             gamePipeline->bind(commandBuffers[i]);
-            vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+            gameModel->bind(commandBuffers[i]);
+            gameModel->draw(commandBuffers[i]);
 
             vkCmdEndRenderPass(commandBuffers[i]);
 

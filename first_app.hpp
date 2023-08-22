@@ -4,6 +4,7 @@
 #include "game_pipeline.hpp"
 #include "game_swap_chain.hpp"
 #include "game_device.hpp"
+#include "game_model.hpp"
 
 #include <memory>
 #include <vector>
@@ -26,6 +27,7 @@ namespace game
         void run();
 
     private:
+        void loadModels();
         void createPipelineLayout();
         void createPipeline();
         void createCommandBuffers();
@@ -37,5 +39,6 @@ namespace game
         std::unique_ptr<GamePipeline> gamePipeline;
         VkPipelineLayout pipelineLayout;
         std::vector<VkCommandBuffer> commandBuffers;
+        std::unique_ptr<GameModel> gameModel;
     };
 }
