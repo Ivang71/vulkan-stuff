@@ -27,9 +27,9 @@ namespace game {
 
     void FirstApp::loadModels() {
         std::vector<GameModel::Vertex> vertiices {
-            {{0, -0.5f}},
-            {{0.5f, 0.5f}},
-            {{-0.5f, 0.5f}}
+            {{0.0f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+            {{0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}},
+            {{-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}}
         };
 
         gameModel = std::make_unique<GameModel>(gameDevice, vertiices);
